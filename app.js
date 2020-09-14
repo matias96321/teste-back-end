@@ -7,6 +7,8 @@ const login = require('./controllers/login')
 const produtos = require('./routers/users/listar_produtos')
 const addProduto = require('./routers/adm/cadastrar_produto')
 const listProduto = require('./routers/adm/listar_produto')
+const info = require('./routers/adm/info_produto')
+const editar = require('./routers/adm/editar_produto')
 const app = express()
 
 
@@ -45,6 +47,9 @@ const app = express()
         app.use('/produtos',produtos)
         app.use('/addProduto',addProduto)
         app.use('/listProduto',listProduto)
+        app.use('/info',info)
+        app.use('/editar',editar)
+
   //
     
     

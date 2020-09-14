@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
 router.get('/:id', async(req,res)=>{
     try {
 
-        const produto = await DataBase.knex.select().table('produtos').innerJoin('imagens','imagens.id_produto','produtos.id_produto').where('id_produto',req.params.id).first()
+        const produto = await DataBase.knex.select().table('produto')//.innerJoin('imagens','imagens.id_produto','produtos.id_produto').where('id_produto',req.params.id).first()
 
         res.send(produto) // redirecionar com os dados do produto para editar
 
@@ -36,9 +36,9 @@ router.post('/update',upload.single('img'),async(req,res)=>{
     try {
         
         const NovoProduto = await DataBase.knex('produto').where({id_produto: req.body.id}).update({produto: req.body.produto,
-        descrisao: req.body.descrisao, preco: req.body.preco})
+        descrisao: req.body.descrisao, preco: req.body.preco, img: req.file.path})
 
-        const NovaImg = await DataBase.knex('imagem').where({id_produto: req.body.id}).update({imagem: req.file.path})
+        // const NovaImg = await DataBase.knex('imagem').where({id_produto: req.body.id}).update({imagem: req.file.path})
 
     } catch (error) {
         

@@ -6,7 +6,7 @@ const knex = require('knex')({
       host : 'localhost',
       user : 'root',
       password : '',
-      database : 'ecomeçe'
+      database : 'e-commerce'
     }
 })
 

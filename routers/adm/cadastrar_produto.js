@@ -20,33 +20,34 @@ const upload = multer({storage:storage})
     router.post('/',upload.single('img'),async(req,res)=>{
 
 
-        const produto = 
+        const produto = [
             {
                 produto: req.body.produto,
                 descrisao: req.body.descrisao,
                 preco: req.body.preco,
                 estoque: req.body.estoque,
+                img: req.file.path
                                
             }
+        ]
         
-        const idProduto = await DataBase.knex.insert(produto).into('produtos')   
 
 
-        if (idProduto < 1) {
+        if (produto.length < 1) {
    
             res.send({mensagem: "Erro ao cadastrar produto no banco de dados"})
         
         } else {
 
-            const imagem = {imagem_produto: req.file.path, id_produto: idProduto}
-
             try {
 
-                const idImagens = await DataBase.knex.insert(imagem).into('imagens')
+                const idProduto = await DataBase.knex.insert(produto).into('produtos')
+                   
+                res.send({produto})
 
             } catch (error) {
 
-                res.send({mensagem: "Erro ao carregar imagem", Erro :error})
+                res.send({mensagem: "Dados inválidos", Erro :error})
                 
             }   
             

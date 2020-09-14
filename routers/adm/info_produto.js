@@ -5,9 +5,9 @@ const router = express.Router();
 
 router.get('/:id', async(req,res)=>{
 
-    const produto = await DataBase.knex.select('produtos.id_produto','produtos.produto','produtos.preco','imagens.imagem').table('produtos').innerJoin('imagens','imagens.id_produto','produtos.id_produto').where({id_produto: req.params.id})
+    const produto = await DataBase.knex.select().table('produtos') //.innerJoin('imagens','imagens.id_produto','produtos.id_produto').where({id_produto: req.params.id})
     
-    if (produtos.length < 1) {
+    if (produto.length < 1) {
 
     res.send({mensagem: "erro ao listar produtos"})
 
@@ -15,7 +15,7 @@ router.get('/:id', async(req,res)=>{
 
         const info = {
 
-            card: produto.map(itens =>{
+            card: produto.map(produto =>{
 
                 return{
 
@@ -23,7 +23,7 @@ router.get('/:id', async(req,res)=>{
 
                     nome: produto.nome,
 
-                    imagem: produto.imagem,
+                    img: produto.img,
 
                     produto: produto.produto,
 
@@ -32,7 +32,7 @@ router.get('/:id', async(req,res)=>{
                     request:{
                         descrisao:"caminho para editar produto",
                         tipo:'GET',
-                        url: 'http://localhost:8080/update' + produto.id_produto
+                        url: 'http://localhost:8080/update/' + produto.id_produto
                     }
                 }
             })
@@ -41,3 +41,4 @@ router.get('/:id', async(req,res)=>{
     }
 })
 
+module.exports = router;
