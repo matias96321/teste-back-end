@@ -36,11 +36,11 @@ router.get('/:id', async(req,res)=>{
                         tipo:'GET',
                         url: 'http://localhost:8080/editar/' + produto.id_produto
 
-                        
+
                     }
                 }
             })
-        }
+        } 
         res.render('adm/info',{info:info.card})
     }
 })
