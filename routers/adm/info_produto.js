@@ -12,7 +12,7 @@ router.get('/:id', async(req,res)=>{
     res.send({mensagem: "erro ao listar produtos"})
 
     } else {
-
+ 
         const info = {
 
             card: produto.map(produto =>{
