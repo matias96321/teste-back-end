@@ -4,7 +4,7 @@ const DataBase = require('../../configs/DataBases')
 const multer = require('multer')
 
 const storage = multer.diskStorage({
-    destination: function (req, file, callback) { callback(null,'uploads/')},
+    destination: function (req, file, callback) { callback(null,'uploads')},
     filename: function (req, file, callback) {
         
         let data = new Date().toISOString().replace(/:/g, '-') + '-';
@@ -19,9 +19,9 @@ const storage = multer.diskStorage({
 router.get('/:id', async(req,res)=>{
     try {
 
-        const produto = await DataBase.knex.select().table('produto')//.innerJoin('imagens','imagens.id_produto','produtos.id_produto').where('id_produto',req.params.id).first()
+        const produtos = await DataBase.knex.select().table('produtos').where('id_produto',req.params.id)//.innerJoin('imagens','imagens.id_produto','produtos.id_produto').where('id_produto',req.params.id).first()
 
-        res.send(produto) // redirecionar com os dados do produto para editar
+        res.render('adm/editar',{produtos:produtos}) // redirecionar com os dados do produto para editar
 
     } catch (error) {
 

@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/:id', async(req,res)=>{
 
-    const produto = await DataBase.knex.select().table('produtos') //.innerJoin('imagens','imagens.id_produto','produtos.id_produto').where({id_produto: req.params.id})
+    const produto = await DataBase.knex.select().table('produtos').where('id_produto',req.params.id) //.innerJoin('imagens','imagens.id_produto','produtos.id_produto').where({id_produto: req.params.id})
     
     if (produto.length < 1) {
 
@@ -27,17 +27,21 @@ router.get('/:id', async(req,res)=>{
 
                     produto: produto.produto,
 
+                    descrisao: produto.descrisao, 
+                    
                     preco: produto.preco,
                     
-                    request:{
+                    request_editar:{
                         descrisao:"caminho para editar produto",
                         tipo:'GET',
-                        url: 'http://localhost:8080/update/' + produto.id_produto
+                        url: 'http://localhost:8080/editar/' + produto.id_produto
+
+                        
                     }
                 }
             })
         }
-        res.send(info)
+        res.render('adm/info',{info:info.card})
     }
 })
 

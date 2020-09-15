@@ -5,7 +5,7 @@ const DataBase = require("../../configs/DataBases")
 
 router.get('/', async(req,res)=>{
 
-    const produtos = await DataBase.knex.select('produtos.id_produto','produtos.produto','produtos.preco','produtos.img').table('produtos') //.innerJoin('imagens','imagens.id_produto','produtos.id_produto')
+    const produtos = await DataBase.knex.select().table('produtos') //.innerJoin('imagens','imagens.id_produto','produtos.id_produto')
     
     if (produtos.length < 1) {
 
@@ -27,6 +27,8 @@ router.get('/', async(req,res)=>{
 
                     produto: produtos.produto,
 
+                    descrisao: produtos.descrisao,
+
                     preco: produtos.preco,
 
                     img: produtos.img,
@@ -38,7 +40,7 @@ router.get('/', async(req,res)=>{
                 }
             })
         }
-        res.send(itens)
+        res.render('adm/listar',{produtos:itens.card})
     }
 })
 
