@@ -35,8 +35,6 @@ router.get('/:id', async(req,res)=>{
                         descrisao:"caminho para editar produto",
                         tipo:'GET',
                         url: 'http://localhost:8080/editar/' + produto.id_produto
-
-
                     }
                 }
             })
@@ -44,5 +42,20 @@ router.get('/:id', async(req,res)=>{
         res.render('adm/info',{info:info.card})
     }
 })
+
+
+
+router.get('/cliente/:id', async(req,res)=>{
+    
+    const clientes = await DataBase.knex.select().table('clientes').where('id_produto',req.params.id) //.innerJoin('imagens','imagens.id_produto','produtos.id_produto').where({id_produto: req.params.id})
+    
+    if (clientes.length < 1) {
+
+    res.send({mensagem: "erro ao listar produtos"})
+
+}
+})
+
+
 
 module.exports = router;

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const DataBase = require("../configs/DataBases")
-const fetch = require('node-fetch');
+const axios = require('axios');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
 
@@ -28,7 +28,7 @@ router.post('/', async function(req,res){
                     
     // Obitendo endereço.
         
-        const cep = await fetch(`https://viacep.com.br/ws/${req.body.cep}/json/`).then(res => res.json())
+     const cep = await axios.get(`https://viacep.com.br/ws/${req.body.cep}/json/`).then((e)=>{return e.data;})
                 
     //      
     
@@ -58,7 +58,7 @@ router.post('/', async function(req,res){
         
         }else{
         
-            const endereço = [{cep: cep.cep,cidade: cep.localidade,estado: cep.uf,idCliente: idCliente}]
+            const endereço = [{cep: cep.cep,cidade: cep.localidade,estado: cep.uf,id_Cliente: idCliente}]
                     
             const idEndereco = await DataBase.knex.insert(endereço).into("endereço");
 
