@@ -4,10 +4,10 @@ const handlebars  = require('express-handlebars');
 const cadastro = require('./controllers/cadastro')
 const listar = require('./routers/adm/listar_clientes')
 const login = require('./controllers/login')
-const produtos = require('./routers/users/listar_produtos')
-const addProduto = require('./routers/adm/cadastrar_produto')
+const novoProduto = require('./routers/adm/cadastrar_produto')
 const listProduto = require('./routers/adm/listar_produto')
 const info = require('./routers/adm/info_produto')
+const excluir = require('./routers/adm/excluir_produto')
 const editar = require('./routers/adm/editar_produto')
 const path = require("path")
 const app = express()
@@ -37,19 +37,19 @@ const app = express()
 
                
         // Rotas publicas
-        app.use('/listar',listar);
-        app.use('/login',login);
-        app.use('/cadastro',cadastro);
+            app.use('/listar',listar);
+            app.use('/login',login);
+            app.use('/cadastro',cadastro);
         //
 
         // Rodatas de ADM
-        app.use('/produtos',produtos)
-        app.use('/addProduto',addProduto)
-        app.use('/listProduto',listProduto)
-        app.use('/info',info)
-        app.use('/editar',editar)
+            app.use('/cadastro',novoProduto) // http://localhost:8080/addProduto  Obs(usar o Insomminia)
+            app.use('/listProduto',listProduto) // http://localhost:8080/listProduto   Obs(Navegador)
+            app.use('/info',info)
+            app.use('/editar',editar)
+            app.use('/excluir',excluir)
 
-  //
+         //
     
     
     //

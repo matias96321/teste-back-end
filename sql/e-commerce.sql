@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 15-Set-2020 às 03:09
+-- Tempo de geração: 16-Set-2020 às 00:04
 -- Versão do servidor: 8.0.21
 -- versão do PHP: 7.3.21
 
@@ -145,16 +145,17 @@ CREATE TABLE IF NOT EXISTS `produtos` (
   `preco` float NOT NULL,
   `estoque` int NOT NULL,
   PRIMARY KEY (`id_produto`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `produtos`
 --
 
 INSERT INTO `produtos` (`id_produto`, `produto`, `img`, `descrisao`, `preco`, `estoque`) VALUES
-(11, 'Call of Duty: Modern Warfare - remake', 'uploads\\2020-09-14T21-48-27.698Z-call-of-duty-modern-warfare-hero-banner-03-ps4-us-30may19.jfif', 'Game de tiro em primeira pessoas...', 59.68, 5),
+(31, 'Battlefield 4: Premium Edition', 'uploads\\f285844e-1d3b-41a4-8238-1f2c11d9cd75.jpeg', 'sadsadsadsadsada', 100.68, 8),
+(11, 'Call of Duty: Modern Warfare 6 - remake', 'uploads\\call-of-duty-modern-warfare-hero-banner-03-ps4-us-30may19.jfif', 'Game de guerra moderna', 10.68, 2),
 (10, 'FIFA 20', 'uploads\\2020-09-14T21-37-38.487Z-H2x1_NSwitch_EaSportsFifa20NintendoSwitchLegacyEdition_image1600w.jpg', 'Game de temática esportiva', 59.68, 5),
-(9, 'Dragon Age: inquisition', 'uploads\\2020-09-14T21-34-00.681Z-13104129839089.jpg', 'Game de aventura e ação...', 59.68, 5);
+(9, 'Dragon Age: inquisition', 'uploads\\dragon-age-inquisition-dlc-bundle_gdp-bg.jpg', 'Game de aventura e ação...', 89.68, 6);
 
 -- --------------------------------------------------------
 
