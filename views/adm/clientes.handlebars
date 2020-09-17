@@ -1,18 +1,27 @@
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">NOME</th>
-      <th scope="col">Las</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
+<div style="margin: 10%;">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">NOME</th>
+        <th scope="col">EMAIL</th>
+        <th scope="col">CEP</th>
+        <th scope="col">CIDADE</th>
+        <th scope="col">ESTADO</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each cliente}}
+      <tr>
+        <th scope="row">{{id_cliente}}</th>
+        <td>{{nome}}</td>
+        <td>{{email}}</td>
+        <td>{{cep}}</td>
+        <td>{{cidade}}</td>
+        <td>{{estado}}</td>
+      </tr>
+      {{/each}}
     </tbody>
-</table>
+  </table>
+  <a href="http://localhost:8080/dashboard" class="btn btn-primary">Voltar</a>
+</div>

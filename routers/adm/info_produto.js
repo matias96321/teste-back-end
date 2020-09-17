@@ -35,6 +35,7 @@ router.get('/:id', async(req,res)=>{
                         descrisao:"caminho para editar produto",
                         tipo:'GET',
                         url: 'http://localhost:8080/editar/' + produto.id_produto
+
                     }
                 }
             })

@@ -10,10 +10,11 @@ const router = express.Router();
         const clientes = query_clientes.map(cliente =>{
 
             return{
-                cliente: {
+               
                 
                     id_cliente:	cliente.id_cliente,
                     nome:	cliente.nome,
+                    senha:  cliente.senha,
                     email:	cliente.email,
                     cep:	cliente.cep,
                     cidade:	cliente.cidade,
@@ -21,10 +22,11 @@ const router = express.Router();
 
                     // request_info_cliente: { tipo: "GET", decrisao: "rota para ter detalhe do cliente/usuario", url:`http://localhost:8080/info/cliente/${cliente.id_cliente}`}
                     
-                }    
+                    
             }
         })
-        res.render('adm/clientes',clientes.cliente)    
+        res.render('adm/clientes',{cliente: clientes})    
+        
     })
 //
 

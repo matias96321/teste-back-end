@@ -9,18 +9,20 @@ const multer = require('multer')
         destination: function (req, file, callback) { callback(null,'uploads')},
             filename: function (req, file, callback) {
         
-        let data = new Date().toISOString().replace(/:/g, '-') + '-';
+         //let data = new Date().toISOString().replace(/:/g, '-') + '-';
         callback(null,file.originalname);
     }
     });
+
     const upload = multer({storage:storage})
 
+// Recebendo o ID do produto que será editado.
 
-// Recebendo o ID do produto que será editado
     router.get('/:id', async(req,res)=>{
+
         try {
 
-            const produtos = await DataBase.knex.select().table('produtos').where('id_produto',req.params.id)//.innerJoin('imagens','imagens.id_produto','produtos.id_produto').where('id_produto',req.params.id).first()
+            const produtos = await DataBase.knex.select().table('produtos').where('id_produto',req.params.id) //.innerJoin('imagens','imagens.id_produto','produtos.id_produto').where('id_produto',req.params.id).first()
 
             res.render('adm/editar',{produtos:produtos}) // redirecionar com os dados do produto para editar
 
@@ -63,8 +65,8 @@ const multer = require('multer')
             console.log("Erro em salvar arquvio editado");
         } else {
             
-            res.redirect(`/info/${req.body.id}`)
-            console.log(query_update);
+            res.redirect(`/info/produto/${req.body.id}`)
+            
         }
 
         // const NovaImg = await DataBase.knex('imagem').where({id_produto: req.body.id}).update({imagem: req.file.path})

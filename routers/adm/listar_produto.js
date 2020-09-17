@@ -35,7 +35,7 @@ router.get('/', async(req,res)=>{
                     
                     request:{
                         tipo:'GET',
-                        url: 'http://localhost:8080/info/' + produtos.id_produto
+                        url: 'http://localhost:8080/info/produto/' + produtos.id_produto
                     }
                 }
             })
