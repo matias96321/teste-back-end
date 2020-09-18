@@ -12,8 +12,9 @@ router.post('/', async function(req,res){
         const erros = []          
         
         const email = await DataBase.knex.select().table('clientes').where('email', req.body.email);
+        console.log(email)
                
-        if(email.length > 1){  erros.push({mensagem: "Email Já cadastrado"})   }
+        if(email.length >= 1){  erros.push({mensagem: "Email Já cadastrado"})   }
 
         if (!req.body.cep || !req.body.email || !req.body.nome || !req.body.senha)  {  erros.push({ mensagem:"Informe os dados corretamente"  })}
                    

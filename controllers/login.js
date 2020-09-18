@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken')
     router.post('/', async function (req, res) {
 
         const data = await DataBase.knex.select().table('clientes').where('email',req.body.email).first()
-       
+        const {nome,email} = data;
         if (!data) {
 
             res.send({mensagem: "Email não cadastrado"})
@@ -30,8 +30,11 @@ const jwt = require('jsonwebtoken')
             },  DataBase.hash,
             {   expiresIn: "1h"   })
 
-            res.send({mensagem: "autenticado", token: token}) // Redirecionar usuario para página. // (incompleto*)  
-            
+            res.json({
+                usuario:{nome,email},
+                mensagem:"autenticado",
+                token: token
+            })  
         }} 
     })
 
