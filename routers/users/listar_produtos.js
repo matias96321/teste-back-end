@@ -8,9 +8,9 @@ const DataBase = require('../../configs/DataBases')
 
     router.get('/', async(req,res)=>{
 
-        const produtos = await DataBase.knex.select('produtos.id_produto','produtos.produto','produtos.preco','imagens.imagem').table('produtos').innerJoin('imagens','imagens.id_produto','produtos.id_produto')
-        
-        if (produtos.length < 1) {
+        const produtos = await DataBase.knex.select('*').table('produtos')
+        console.log(produtos)
+        if (produtos.length <= 1) {
 
         res.send({mensagem: "erro ao listar produtos"})
 
@@ -20,7 +20,7 @@ const DataBase = require('../../configs/DataBases')
 
                 card: produtos.map(iten =>{
 
-                    return{
+                    return({
 
                         id_produto: produtos.id_produto,
 
@@ -36,10 +36,11 @@ const DataBase = require('../../configs/DataBases')
                             tipo:'GET',
                             url: 'http://localhost:8080/produto' + produtos.id_produto
                         }
-                    }
-                })
+                    });
+                }
+                )
             }
-            res.send(produtos)
+            res.json({produtos})
         }
     })
 //

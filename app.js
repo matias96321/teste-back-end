@@ -2,10 +2,13 @@
     const express = require('express');
     const bodyParser = require('body-parser');
     const handlebars  = require('express-handlebars');
+    const cors = require('cors');
 //Cliente
     const cadastro = require('./controllers/cadastro')
     const home = require('./routers/users/listar_produtos')
     const login = require('./controllers/login')
+    const listarProdutos = require('./routers/users/listar_produtos');
+    const detalheProduto = require('./routers/users/detalhe_produto');
 //Adm
     const novoProduto = require('./routers/adm/cadastrar_produto')
     const listProduto = require('./routers/adm/listar_produto')
@@ -18,7 +21,7 @@
     const path = require("path")
     const app = express()
 
-
+    app.use(cors())
     // configuração do BodyParser.
         app.use(bodyParser.urlencoded({ extended: false }))
         app.use(bodyParser.json())
@@ -46,8 +49,9 @@
 
             app.use('/home',home);
             app.use('/login',login);
-            app.use('/cadastro',cadastro);
-            
+            app.use('/cadastrarCliente',cadastro);
+            app.use('/listallprodutos', listarProdutos);
+            app.use(detalheProduto);
         //
 
         // Rodatas de ADM
