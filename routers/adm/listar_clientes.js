@@ -25,7 +25,7 @@ const router = express.Router();
                     
             }
         })
-        res.render('adm/clientes',{cliente: clientes})    
+        return res.json({clientes:clientes});
         
     })
 //

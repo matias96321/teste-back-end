@@ -24,7 +24,7 @@ const multer = require('multer')
 
             const produtos = await DataBase.knex.select().table('produtos').where('id_produto',req.params.id) //.innerJoin('imagens','imagens.id_produto','produtos.id_produto').where('id_produto',req.params.id).first()
 
-            res.render('adm/editar',{produtos:produtos}) // redirecionar com os dados do produto para editar
+            res.send(produtos) // redirecionar com os dados do produto para editar
 
         } catch (error) {
 
