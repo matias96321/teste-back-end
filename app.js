@@ -16,6 +16,8 @@
     const excluir = require('./routers/adm/excluir_produto')
     const editar = require('./routers/adm/editar_produto')
     const dashboard = require('./routers/adm/dashboard')
+    const loginadm = require('./routers/adm/login_admin')
+    const cadastrarAdmin = require('./routers/adm/cadastrar_adm')
 //Sistema
     const path = require("path")
     const app = express()
@@ -54,7 +56,7 @@
         //
 
         // Rodatas de ADM
-
+            app.use('/admin/login', loginadm)
             app.use('/dashboard',dashboard)
             app.use('/cadastro',novoProduto)
             app.use('/listProduto',listProduto) // http://localhost:8080/listProduto   Obs(Navegador)
@@ -62,6 +64,7 @@
             app.use('/editar',editar)
             app.use('/excluir',excluir)
             app.use('/listCliente',listCliente)
+            app.use('/admin/register',cadastrarAdmin)
 
         //
     

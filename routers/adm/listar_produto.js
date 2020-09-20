@@ -40,7 +40,7 @@ router.get('/', async(req,res)=>{
                 }
             })
         }
-        res.render('adm/listar',{produtos:itens.card})
+        return res.json({produtos:itens.card})
     }
 })
 
