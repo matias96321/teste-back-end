@@ -10,7 +10,7 @@ router.get('/:id', async(req,res)=>{
     if (query_delete < 1) {
        console.log("Erro ao deletar este produto"); 
     } else {
-        res.redirect('http://localhost:8080/listProduto')
+        return res.send('Produto deletado')
     }
   
 })
