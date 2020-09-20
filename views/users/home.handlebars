@@ -1,0 +1,17 @@
+<div style="margin: 5%;">
+    <div class="row row-cols-1 row-cols-md-4">
+        {{#each produtos}}
+            <div class="col mb-4">
+                <a href="{{request_produto.url}}" style="text-decoration:none; color:black">
+                    <div class="card h-100">
+                        <img src="{{imagem}}" class="card-img-top" alt="..." onclick="">
+                        <div class="card-body">
+                                <h5 class="card-title">{{produto}}</h5>
+                            <p class="card-text">{{preco}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {{/each}}
+    </div>
+</div>

@@ -5,10 +5,9 @@
     const cors = require('cors');
 //Cliente
     const cadastro = require('./controllers/cadastro')
-    const home = require('./routers/users/listar_produtos')
+    const home = require('./routers/users/home')
     const login = require('./controllers/login')
-    const listarProdutos = require('./routers/users/listar_produtos');
-    const detalheProduto = require('./routers/users/detalhe_produto');
+    const detalheProduto = require('./routers/users/detalheProduto');
 //Adm
     const novoProduto = require('./routers/adm/cadastrar_produto')
     const listProduto = require('./routers/adm/listar_produto')
@@ -50,8 +49,8 @@
             app.use('/home',home);
             app.use('/login',login);
             app.use('/cadastrarCliente',cadastro);
-            app.use('/listallprodutos', listarProdutos);
-            app.use(detalheProduto);
+          //  app.use('/listallprodutos', listarProdutos);
+            app.use('/detalheProduto',detalheProduto);
         //
 
         // Rodatas de ADM
