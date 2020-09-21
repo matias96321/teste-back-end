@@ -8,8 +8,8 @@ const DataBase = require('../../configs/DataBases')
 
 router.get('/', async(req,res)=>{
 
-    const produtos = await DataBase.knex.select('*').table('produtos') // falta configurar produtos com estoque 0.
-    
+    const produtos = await DataBase.knex.select('*').table('produtos').where('estoque','>',0) // falta configurar produtos com estoque 0.
+        
     if (produtos.length < 1) {
 
         res.send({mensagem: "erro ao listar produtos"})

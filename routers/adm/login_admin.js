@@ -14,6 +14,7 @@ router.post('/', async (req,res)=>{
   }else{
 
   const {nome,email} = data;
+  
         if (!data) {
 
             res.send({mensagem: "Email não cadastrado"})

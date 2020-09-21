@@ -13,13 +13,21 @@ router.get('/', async(req,res)=>{
 
     } else {
 
-        const itens = {
+        aviso = (estoque,callback)=>{
+            
+            if (estoque == 0) { callback = 'Este produto está sem estoque' } else { callback = null }
+            
+            return callback;
+        }
 
+        const itens = {
+            
             card: produtos.map(produtos =>{
 
-                return{
-
-                    id_produto: produtos.id_produto,
+                               
+                return({
+             
+                    id_produto: produtos.id_produto,    
 
                     nome: produtos.nome,
 
@@ -29,6 +37,8 @@ router.get('/', async(req,res)=>{
 
                     descrisao: produtos.descrisao,
 
+                    mensagem: aviso(produtos.estoque),
+
                     preco: produtos.preco,
 
                     img: produtos.img,
@@ -37,10 +47,11 @@ router.get('/', async(req,res)=>{
                         tipo:'GET',
                         url: 'http://localhost:8080/info/produto/' + produtos.id_produto
                     }
-                }
+                })
             })
         }
-        return res.json({produtos:itens.card})
+        return res.render('adm/listar',{produtos:itens.card})
+
     }
 })
 

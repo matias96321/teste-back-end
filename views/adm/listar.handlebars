@@ -6,7 +6,11 @@
             <div class="card-body">
                 <h5 class="card-title">{{produto}}</h5>
                 <a href="{{request.url}}" class="btn btn-info">Configurar</a>
-                
+                {{#if mensagem}}
+                <div class="alert alert-danger" role="alert">
+                  {{mensagem}}  
+                </div>
+                {{/if}}
             </div>
         </div>
     {{/each}}

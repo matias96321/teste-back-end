@@ -59,7 +59,7 @@
             app.use('/admin/login', loginadm)
             app.use('/dashboard',dashboard)
             app.use('/cadastro',novoProduto)
-            app.use('/listProduto',listProduto) // http://localhost:8080/listProduto   Obs(Navegador)
+            app.use('/listProduto',listProduto) 
             app.use('/info/produto/',info)
             app.use('/editar',editar)
             app.use('/excluir',excluir)
