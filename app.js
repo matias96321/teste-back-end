@@ -1,4 +1,4 @@
-//Sistema
+    //Sistema
     const express = require('express');
     const bodyParser = require('body-parser');
     const handlebars  = require('express-handlebars');
@@ -19,8 +19,12 @@
     const dashboard = require('./routers/adm/dashboard')
     const loginadm = require('./routers/adm/login_admin')
     const cadastrarAdmin = require('./routers/adm/cadastrar_adm')
+    const checkout = require('./routers/adm/checkout')
+    const transaction = require('./routers/adm/transaction')
+
+    const { Total, Sacar } = require('./controllers/pagarme');
 //Sistema
-    const path = require("path")
+    const path = require("path");
     const app = express()
 
     app.use(cors())
@@ -66,6 +70,10 @@
             app.use('/excluir',excluir)
             app.use('/listCliente',listCliente)
             app.use('/admin/register',cadastrarAdmin)
+            app.use('/mostrarsaldo', Total)
+            app.use('/sacardinheiro', Sacar)
+            app.use('/checkout', checkout) //ROTA DE CHECKOUT (PEGAR O CARD HASH)
+            app.use('/transaction', transaction) //ROTA DE PAGAMENTO
 
         //
     
