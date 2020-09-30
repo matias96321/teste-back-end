@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken')
     router.post('/', async function (req, res) {
 
         const data = await DataBase.knex.select().table('clientes').where('email',req.body.email).first()
+        const endereco = await DataBase.knex.select().table('endereço').where('id_cliente',data.id_cliente).first()
         const {nome,email} = data;
         if (!data) {
 
@@ -31,16 +32,11 @@ const jwt = require('jsonwebtoken')
             {   expiresIn: "1h"   })
 
             res.json({
-                usuario:{nome,email},
+                usuario:{nome,email,endereco},
                 mensagem:"autenticado",
                 token: token
             })  
         }} 
     })
-
-
-
-
-
 
     module.exports = router;
