@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS carrinhos (
+	
+   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+   id_cliente INT NOT NULL,
+   data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+  
+  CONSTRAINT FK_CARRINHOS_CLIENTES FOREIGN KEY(id_cliente)
+  	REFERENCES clientes(id_cliente)
+);
+
+CREATE TABLE IF NOT EXISTS carrinho_produto(
+  
+  id_carrinho INT NOT NULL,
+  id_produto INT NOT NULL,
+  quantidade INT DEFAULT 1,
+  
+  CONSTRAINT FK_CARRINHO_PRODUTO_CARRINHOS FOREIGN KEY(id_carrinho)
+  REFERENCES carrinhos(id) ON DELETE CASCADE,
+  
+  CONSTRAINT FK_CARRINHO_PRODUTO_PRODUTOS FOREIGN KEY(id_produto)
+  REFERENCES produtos(id_produto)
+);

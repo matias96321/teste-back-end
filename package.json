@@ -6,6 +6,7 @@
     "axios": "^0.20.0",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
+    "correios-brasil": "^2.0.4",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-handlebars": "^5.1.0",
@@ -16,7 +17,8 @@
     "mysql": "^2.18.1",
     "mysql2": "^2.1.0",
     "node-fetch": "^2.6.1",
-    "pagarme": "^4.13.0"
+    "pagarme": "^4.13.0",
+    "yup": "^0.29.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
