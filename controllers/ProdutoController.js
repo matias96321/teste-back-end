@@ -18,6 +18,7 @@ module.exports ={
         } = Request.body  
         
         const ResquestImages = Request.file
+            
         const data = {
             produto,
             descrisao,

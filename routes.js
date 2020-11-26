@@ -26,7 +26,7 @@ const multerConfig = require('./configs/uploads')
         router.post('/login-Admin',Login.LoginAdmin)
         router.post('/login',Login.LoginClient)
         
-        router.post('/registro',Cliente.Create)
+        router.post('/cadastrarCliente',upload.single('images'),Cliente.Create)
         router.get('/cliente',Cliente.ReadAll)
         router.get('/cliente/:id',Cliente.ReadForId)
         router.patch('/cliente',Cliente.Update)

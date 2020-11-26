@@ -10,7 +10,7 @@ module.exports = {
 
         const data = await DataBase.knex.select().table('clientes').where('email',Request.body.email).first()
         const endereco = await DataBase.knex.select().table('endereço').where('id_cliente',data.id_cliente).first()
-        console.log(data)
+        
         const {nome,email} = data;
         
         if (!data) {
@@ -37,6 +37,7 @@ module.exports = {
                     email: data.email,
                     },  DataBase.hash,
                 {   expiresIn: "1h"   })
+
                 Response.status(200).json({
                     usuario:{nome,email,carrinho: carrinho.id,endereco},
                     mensagem:"autenticado",
