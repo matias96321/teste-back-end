@@ -11,15 +11,20 @@ module.exports ={
 
     async Create(Request = request,Response = response, next) {
 
-        //const ResquestImages = Request.file
-       
-       
-        const ResquestImages = Request.file
+        var ResquestImages 
+
+        if (Request.file == undefined) {
+            ResquestImages = "default.jpg"
+        } else {
+            ResquestImages = Request.file.filename
+        }
+                      
         let {nome, email, senha, cep} = Request.body
+        
         const data = {nome, email, senha, cep}
 
-        const dataforms = {nome, email, senha}
-            // const emailBD = await DataBase.knex.select('email').table('clientes').where({email: data.email})
+        const dataforms = {nome, email, senha, img: ResquestImages}
+            //sconst emailBD = await DataBase.knex.select('email').table('clientes').where({email: data.email})
             const schema = yup.object().shape({
                 nome: yup.string().required(),
                 email: yup.string().required().email(),
@@ -37,9 +42,9 @@ module.exports ={
                 dataforms.senha = bcrypt.hashSync(senha,10)
                 console.log(dataforms)
     
-                const id = await DataBase.knex.insert(dataforms).into('clientes')
+               const id = await DataBase.knex.insert(dataforms).into('clientes')
                           
-                await DataBase.knex.insert({id_Cliente:id}).into('carrinhos')
+               await DataBase.knex.insert({id_Cliente:id}).into('carrinhos')
     
                 const endereco = [{cep: RequestCep.cep, cidade: RequestCep.localidade, estado: RequestCep.uf, id_Cliente: id}]
                 
@@ -47,13 +52,15 @@ module.exports ={
                 
                 const token = jwt.sign({    
     
-                    id: id,
+                   id: id,
                     nome: dataforms.nome,
                     email: dataforms.email,
                 },  DataBase.hash,{expiresIn: "1h"})            
     
                 Response.status(200).json({mensagem: "Usuário cadastrado com sucesso", token: token  })
      
+                console.log(dataforms);
+
             } catch (e) {
                
                 Response.json(e)
@@ -61,7 +68,7 @@ module.exports ={
     },
     async ReadAll(Request = request,Response = response){
         
-        const data = await DataBase.knex('clientes').select()
+        const data = await DataBase.knex.select().table('clientes')
         console.log(data)
         Response.status(200).json(RenderAll(data))
     },
@@ -75,6 +82,33 @@ module.exports ={
 
     },
     async Update(Request = request,Response = response){
+        
+        const {id} = Request.body
+
+        var ResquestImages 
+
+        if (Request.file == undefined) {
+            ResquestImages = "default.jpg"
+        } else {
+            ResquestImages = Request.file.filename
+        }
+
+        const data = {nome,email} = Request.body
+
+        const schema = yup.object().shape({
+            nome: yup.string().required().trim(),
+            email: yup.string().required().email()
+            
+        })
+
+        schema.validate(data,{
+            abortEarly:false
+        })
+
+        await DataBase.knex('clientes').where({id_Cliente: id}).update(data)
+        
+    },
+    async Update_Password(Request = request,Response = response){
         
         const {id} = Request.params
 
@@ -92,7 +126,8 @@ module.exports ={
 
         await DataBase.knex('clientes').where({id_Cliente: id}).update(senha)
         
-    }        
+    },
+
       
 
 }

@@ -7,6 +7,7 @@ module.exports = {
             cliente.push({
                 id: data.id_cliente,
                 cliente: data.nome,
+                imagem: `http://localhost:8080/uploads/${data.img}`,
                 email: data.email,
                 password: data.password
             })
@@ -21,6 +22,7 @@ module.exports = {
             clientes.push({
                 id: data.id_cliente,
                 cliente: data.nome,
+                imagem: `http://localhost:8080/uploads/${data.img}`,
                 email: data.email,
                 password: data.password
             })

@@ -29,7 +29,8 @@ const multerConfig = require('./configs/uploads')
         router.post('/cadastrarCliente',upload.single('images'),Cliente.Create)
         router.get('/cliente',Cliente.ReadAll)
         router.get('/cliente/:id',Cliente.ReadForId)
-        router.patch('/cliente',Cliente.Update)
+        router.patch('/cliente',upload.single('images'),Cliente.Update)
+        router.patch('/cliente',Cliente.Update_Password)
         
         router.post('/produto',upload.single('images'),Produto.Create)
         router.get('/produto',Produto.ReadAll)
@@ -46,13 +47,15 @@ const multerConfig = require('./configs/uploads')
         router.get('/pagarme-recebiveis', pagarme.Recebiveis)
         router.post('/pagarme-criarrecebedor', pagarme.CriandoRecebivel)
         router.post('/pagarme-criarcontabancaria', pagarme.CriandoContaBancaria)
-        // proximas rotas //
-
+        
         router.post('/frete',Frete.CalcularValorPrazo)
 
         router.post('/carrinho',Carrinho.Create)
         router.get('/carrinho',Carrinho.ReadAll)
         router.delete('/carrinho',Carrinho.Delete)
+
+        // proximas rotas //
+
         // router.post('/pedido',pedido) 
         // router.get('/pedido',pedido) 
 
