@@ -1,5 +1,5 @@
 const pagarme = require("pagarme");
-
+const Pedido = require('../controllers/PedidosController')
 //Consulta de saldo
 
 module.exports = {
@@ -25,7 +25,7 @@ module.exports = {
         })
       )
       .then((transfer) => {
-        return res.send(transfer);
+        
       })
       .catch((err) => {
         console.log(err.response.errors[0].message)
@@ -45,6 +45,7 @@ module.exports = {
       shipping,
       billing,
       items,
+      casa
     } = req.body;
 
     pagarme.client
@@ -63,7 +64,7 @@ module.exports = {
         })
       )
       .then((transaction) => {
-        
+        Pedido(transaction,casa)
         return res.json({ transaction: transaction });
       })
       .catch((err) => {
