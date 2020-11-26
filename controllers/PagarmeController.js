@@ -1,5 +1,6 @@
 const pagarme = require("pagarme");
 const Pedido = require('../controllers/PedidosController')
+const Carrinho = require('../controllers/CarrinhoController')
 //Consulta de saldo
 
 module.exports = {
@@ -45,7 +46,8 @@ module.exports = {
       shipping,
       billing,
       items,
-      casa
+      casa,
+      carrinho_id
     } = req.body;
 
     pagarme.client
@@ -63,12 +65,17 @@ module.exports = {
           items: items,
         })
       )
-      .then((transaction) => {
-        Pedido(transaction,casa)
+      .then((transaction) => { 
+
+        Pedido.Create(transaction,casa)
+        Carrinho.Delete(carrinho_id)
+      
+
         return res.json({ transaction: transaction });
       })
       .catch((err) => {
-        return res.json({ message: err.response.error });
+        console.log(err);
+        return res.json({message:err});
       });
   },
 

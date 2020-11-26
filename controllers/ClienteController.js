@@ -40,11 +40,10 @@ module.exports ={
                 const RequestCep = await axios.get(`https://viacep.com.br/ws/${cep}/json/`).then((e)=>{return e.data;})
                 
                 dataforms.senha = bcrypt.hashSync(senha,10)
-                console.log(dataforms)
-    
-               const id = await DataBase.knex.insert(dataforms).into('clientes')
+                    
+                const id_cliente = await DataBase.knex.insert(dataforms).into('clientes')
                           
-               await DataBase.knex.insert({id_Cliente:id}).into('carrinhos')
+                const id_carrinho = await DataBase.knex.insert({id_Cliente:id_cliente}).into('carrinhos')
     
                 const endereco = [{cep: RequestCep.cep, cidade: RequestCep.localidade, estado: RequestCep.uf, id_Cliente: id}]
                 
@@ -52,7 +51,8 @@ module.exports ={
                 
                 const token = jwt.sign({    
     
-                   id: id,
+                    id: id_cliente,
+                    carrinho: id_carrinho,
                     nome: dataforms.nome,
                     email: dataforms.email,
                 },  DataBase.hash,{expiresIn: "1h"})            

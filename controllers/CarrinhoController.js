@@ -16,11 +16,11 @@ const {RenderAll} = require('../views/Carrinho-views')
             const produto_existente = await ReadForId(Request.body);
             
             if (produto_existente === undefined) {
-                console.log("aaaa");
+                
                 await knex.insert(item).into('carrinho_produto')
 
             } else {
-                console.log('passou')
+               
                await Update(Request.body);
 
             }
@@ -28,9 +28,7 @@ const {RenderAll} = require('../views/Carrinho-views')
             return Response.json({mensagem: "success"})
             
         } catch (error) {
-
             Response.json(error)            
-
         }
         
 
@@ -75,11 +73,11 @@ const {RenderAll} = require('../views/Carrinho-views')
         
     }
 
-    async function Delete(Request = request,Response = response){
+    async function Delete(carrinho_id){
         
         try {
-            const {id_carrinho , id_produto} = Request.body
-            await knex.table('carrinho_produto').where({id_carrinho:id_carrinho,id_produto: id_produto}).delete()
+            
+            await knex.table('carrinho_produto').where({id_carrinho:carrinho_id}).delete()
             return Response.status(200).json({message: 'success'})
         
         } catch (error) {
