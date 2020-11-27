@@ -50,7 +50,7 @@ const multerConfig = require('./configs/uploads')
         
         router.post('/frete',Frete.CalcularValorPrazo)
 
-        router.post('/carrinho',Carrinho.Create) // Rotas não funcional
+        router.post('/carrinho',Carrinho.Create) 
         router.get('/carrinho',Carrinho.ReadAll) 
         router.delete('/carrinho',Carrinho.Delete) // Rotas não funcional
 
