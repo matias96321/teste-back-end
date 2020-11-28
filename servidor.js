@@ -3,11 +3,14 @@ const routers = require('./routes')
 const cors = require('cors');
 const path = require('path')
 const app = express()
+const BodyParser = require('body-parser')
 const errors = require('./errors/handle')
     // Configurando express
-     
+
         app.use(express.json())
-    
+    //
+        app.use(BodyParser.json());
+        app.use(BodyParser.urlencoded({ extended: true }));
     // Tratando cors
     
         app.use(cors())

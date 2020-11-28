@@ -1,3 +1,4 @@
+
 const pagarme = require("pagarme");
 const Pedido = require('../controllers/PedidosController')
 const Carrinho = require('../controllers/CarrinhoController')
@@ -42,6 +43,7 @@ module.exports = {
       card_expiration_date,
       card_number,
       card_cvv,
+      postback_url,
       customer,
       shipping,
       billing,
@@ -59,6 +61,7 @@ module.exports = {
           card_cvv: card_cvv,
           card_expiration_date: card_expiration_date,
           card_holder_name: card_holder_name,
+          postback_url,
           customer: customer,
           billing: billing,
           shipping: shipping,
@@ -67,6 +70,7 @@ module.exports = {
       )
       .then((transaction) => { 
 
+        console.log(transaction);
         Pedido.Create(transaction,casa)
         Carrinho.Delete(carrinho_id)
       
@@ -99,7 +103,6 @@ module.exports = {
         return res.json({ message: err.response.error });
       });
   },
-
   //Retornar todas as transações feitas (COMPRAS/ULTIMOS PEDIDOS) <- usar o retorno dessa endpoint pra fazer o
   //map dos cards de "ultimos pedidos"
   async TodasTransações(req, res) {

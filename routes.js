@@ -4,6 +4,7 @@ const {Router} = require('express')
 const router = Router()
 const multerConfig = require('./configs/uploads')
 
+
 // Rotas 
     const Login = require('./controllers/LoginController')
 
@@ -15,6 +16,9 @@ const multerConfig = require('./configs/uploads')
     const Frete = require('./controllers/FreteController')
     
     const Carrinho = require('./controllers/CarrinhoController')
+
+    const PostBeck = require('./controllers/PostBackController')
+
 //
 
     // configuração do multer
@@ -56,11 +60,13 @@ const multerConfig = require('./configs/uploads')
 
         // proximas rotas //
 
-        // router.post('/pedido',pedido) 
+        
         // router.get('/pedido',pedido) 
 
-
-
+        router.post('/postback-pagarme',PostBeck.PostBeck)
+        
+        
+      //  router.get('/pag1',(req,res)=>{res.json({Message: "Pag1"})})
     //
 
   

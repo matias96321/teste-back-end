@@ -78,7 +78,7 @@ const {RenderAll} = require('../views/Carrinho-views')
         try {
             
             await knex.table('carrinho_produto').where({id_carrinho:carrinho_id}).delete()
-            return Response.status(200).json({message: 'success'})
+            
         
         } catch (error) {
             console.log(error);
