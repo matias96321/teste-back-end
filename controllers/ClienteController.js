@@ -45,7 +45,7 @@ module.exports ={
                           
                 const id_carrinho = await DataBase.knex.insert({id_Cliente:id_cliente}).into('carrinhos')
     
-                const endereco = [{cep: RequestCep.cep, cidade: RequestCep.localidade, estado: RequestCep.uf, id_Cliente: id}]
+                const endereco = [{cep: RequestCep.cep, cidade: RequestCep.localidade, estado: RequestCep.uf, id_Cliente: id_cliente}]
                 
                 await DataBase.knex.insert(endereco).into('endereço')
                 
@@ -62,7 +62,7 @@ module.exports ={
                 console.log(dataforms);
 
             } catch (e) {
-               
+               console.log(e);
                 Response.json(e)
             }
     },

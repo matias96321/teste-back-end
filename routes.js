@@ -57,6 +57,7 @@ const multerConfig = require('./configs/uploads')
         router.post('/carrinho',Carrinho.Create) 
         router.get('/carrinho',Carrinho.ReadAll) 
         router.delete('/carrinho',Carrinho.Delete) // Rotas não funcional
+        // router.delete('/carrinho',Carrinho.DeleteForId)
 
         // proximas rotas //
 
