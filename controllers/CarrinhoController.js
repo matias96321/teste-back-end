@@ -84,5 +84,19 @@ const {RenderAll} = require('../views/Carrinho-views')
             console.log(error);
         }
     }
+    async function DeleteForId(Request,Response){
+        try {
+       
+            const {id_carrinho,id_produto} = Request.body
+       
+            await knex('carrinho_produto').delete().where({id_carrinho: id_carrinho, id_produto: id_produto});
+       
+            return Response.status(200).json({mensagem:'success'})
+       
+        } catch (error) {
+            console.log(error);           
+        }
+        
+    }
 
-module.exports = {Create, ReadAll,Delete}
+module.exports = {Create, ReadAll, Delete, DeleteForId}

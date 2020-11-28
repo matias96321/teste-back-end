@@ -48,16 +48,18 @@ const multerConfig = require('./configs/uploads')
         router.get('/pagarme-total',pagarme.Total) ///----rota não testada----///
         router.get('/pagarme-todastransacoes', pagarme.TodasTransações)
         router.post('/pagarme-estorno/:id', pagarme.EstornoPagamento)
-        router.get('/pagarme-recebiveis', pagarme.Recebiveis)
-        router.post('/pagarme-criarrecebedor', pagarme.CriandoRecebivel)
-        router.post('/pagarme-criarcontabancaria', pagarme.CriandoContaBancaria)
+        router.get('/pagarme-recebiveis', pagarme.Recebiveis) // 
+        router.post('/pagarme-criarrecebedor', pagarme.CriandoRecebivel) //
+        router.post('/pagarme-criarcontabancaria', pagarme.CriandoContaBancaria) //
         
+        
+
         router.post('/frete',Frete.CalcularValorPrazo)
 
         router.post('/carrinho',Carrinho.Create) 
         router.get('/carrinho',Carrinho.ReadAll) 
-        router.delete('/carrinho',Carrinho.Delete) // Rotas não funcional
-        // router.delete('/carrinho',Carrinho.DeleteForId)
+        // router.delete('/carrinho',Carrinho.Delete) // Rotas não funcional
+        router.delete('/carrinho',Carrinho.DeleteForId)
 
         // proximas rotas //
 
