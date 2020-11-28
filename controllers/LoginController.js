@@ -11,7 +11,7 @@ module.exports = {
         const data = await DataBase.knex.select().table('clientes').where('email',Request.body.email).first()
         const endereco = await DataBase.knex.select().table('endereço').where('id_cliente',data.id_cliente).first()
         
-        const {nome,email} = data;
+        const {nome,email,img} = data;
         
         if (!data) {
 
@@ -39,7 +39,7 @@ module.exports = {
                 {   expiresIn: "1h"   })
 
                 Response.status(200).json({
-                    usuario:{nome,email,carrinho: carrinho.id,endereco},
+                    usuario:{nome,email,carrinho: carrinho.id,img:`http://localhost:8080/uploads/${img}`,endereco},
                     mensagem:"autenticado",
                     token: token
                 })  
