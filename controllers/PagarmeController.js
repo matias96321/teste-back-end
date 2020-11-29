@@ -2,6 +2,7 @@
 const pagarme = require("pagarme");
 const Pedido = require('../controllers/PedidosController')
 const Carrinho = require('../controllers/CarrinhoController')
+const PagarmeViews = require('../views/Pagarme-views')
 //Consulta de saldo
 
 module.exports = {
@@ -110,7 +111,9 @@ module.exports = {
       .connect({ api_key: "ak_test_moyHJWO5yY9VUWgPvzHg5RAHR5uNn0" })
       .then((client) => client.transactions.all())
       .then((transactions) => {
-        return res.json({ transactions: transactions });
+        //res.send(transactions)
+        return  res.send(PagarmeViews.TransacoesViews(transactions))
+        
       })
       .catch((err) => {
         console.log(err);
