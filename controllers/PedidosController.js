@@ -1,4 +1,5 @@
 const {knex} = require('../configs/DataBases')
+const { ReadAll } = require('./ProdutoController')
 
 module.exports ={
 
@@ -36,5 +37,8 @@ module.exports ={
 
         
         
-    }
+    },
+    async ReadAll(){
+        
+    },
 }

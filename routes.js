@@ -66,7 +66,8 @@ const multerConfig = require('./configs/uploads')
         
         // router.get('/pedido',pedido) 
 
-        router.post('/postback-pagarme',PostBeck.PostBeck)
+        router.post('/postback-pagarme-cartao',PostBeck.PostBeck)
+        router.post('/postback-pagarme-boleto',PostBeck.PostBeck)
         
         
       //  router.get('/pag1',(req,res)=>{res.json({Message: "Pag1"})})

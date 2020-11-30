@@ -44,7 +44,7 @@ module.exports = {
       card_expiration_date,
       card_number,
       card_cvv,
-      postback_url,
+   
       customer,
       shipping,
       billing,
@@ -62,12 +62,12 @@ module.exports = {
           card_cvv: card_cvv,
           card_expiration_date: card_expiration_date,
           card_holder_name: card_holder_name,
-          postback_url,
+          postback_url:process.env.SERVER_URL + "/postback-pagarme-cartao",
           customer: customer,
           billing: billing,
           shipping: shipping,
           items: items,
-        })
+        },console.log(process.env))
       )
       .then((transaction) => { 
 
@@ -92,6 +92,7 @@ module.exports = {
         client.transactions.create({
           amount: amount,
           payment_method: payment_method,
+          postback_url: process.env.SERVER_URL,
           postback_url: postback_url,
           customer: costumer,
         })
