@@ -8,7 +8,10 @@ module.exports = {
 
     async LoginClient(Request = request,Response = response) {
 
+        
+
         const data = await DataBase.knex.select().table('clientes').where('email',Request.body.email).first()
+        console.log(data);
         const endereco = await DataBase.knex.select().table('endereço').where('id_cliente',data.id_cliente).first()
         
         const {nome,email,img} = data;

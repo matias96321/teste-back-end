@@ -1,7 +1,7 @@
 module.exports = {
     TransacoesViews(dados = []){
         return dados.map(dados =>{
-            return({
+            return{
 
                 id:dados.id,
                 status:dados.status,
@@ -28,7 +28,7 @@ module.exports = {
                 },
                 
                 items:dados.items
-            })
+            }
             
         })
     
